@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bilibili-agent-mcp"
+version = "0.1.0"
+description = "Bounded Bilibili browsing, social navigation and Qwen audio/video perception for your existing agent"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "vendor_bili/LICENSE.*"]
+authors = [{name = "nefelibata5136-code"}]
+dependencies = [
+  "mcp>=1.30.0,<2",
+  "bilibili-api-python==17.4.2",
+  "aiohttp>=3.9,<4",
+  "httpx>=0.27,<1",
+  "qrcode[pil]>=8,<9",
+]
+
+[project.optional-dependencies]
+watch = ["yt-dlp>=2026.8.19"]
+
+[project.scripts]
+bilibili-agent-mcp = "readonly_server:main"
+bilibili-agent-config = "bili_cli:main"
+
+[project.urls]
+Repository = "https://github.com/nefelibata5136-code/bilibili-agent-mcp"
+Issues = "https://github.com/nefelibata5136-code/bilibili-agent-mcp/issues"
+
+[tool.setuptools]
+py-modules = ["readonly_server", "account_actions", "binding", "bili_cli"]
+packages = ["browse", "dm", "social", "watch", "vendor_bili"]
+
+[tool.setuptools.package-data]
+vendor_bili = ["LICENSE.*"]
